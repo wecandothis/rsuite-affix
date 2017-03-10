@@ -1,6 +1,6 @@
 {
   "name": "rsuite-affix",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Make an element sticky to viewport Edit",
   "scripts": {
     "build-css": "node bin/css-build.js",
@@ -19,6 +19,7 @@
   "dependencies": {
     "classnames": ">=2.0.0",
     "dom-lib": "0.0.14",
+    "element-resize-event": "^2.0.7",
     "react": "^0.14.2",
     "react-dom": "^0.14.2"
   },

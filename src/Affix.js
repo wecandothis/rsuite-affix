@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
 import classNames from 'classnames';
 import { on, getOffset } from 'dom-lib';
+import onResize from 'element-resize-event';
 
 
 const Affix = React.createClass({
@@ -48,9 +49,9 @@ const Affix = React.createClass({
         this._resizeListener && this._resizeListener.off();
     },
     handleWindowResize() {
-        setTimeout(()=>{
+        setTimeout(() => {
             this.setContainerOffset();
-        },1);
+        }, 1);
     },
     setContainerOffset() {
         const container = findDOMNode(this.container);
@@ -59,9 +60,12 @@ const Affix = React.createClass({
         });
     },
     componentDidMount() {
+        const container = findDOMNode(this.container);
         this._scrollListener = on(window, 'scroll', this.updatePosition);
         this._resizeListener = on(window, 'resize', this.handleWindowResize);
         this.setContainerOffset();
+
+        onResize(container, this.setContainerOffset);
     },
     componentWillUnmount() {
         this.releaseEvents();
